@@ -3,7 +3,7 @@ from agent_setup import app
 
 def run_test_case(name: str, user_message: str):
     """Utility runner to pipe isolated test states through the compiled LangGraph."""
-    print(f"\n{"="*10} 🧪 RUNNING TEST: {name} {"="*10}")
+    print(f"\n{'='*10} 🧪 RUNNING TEST: {name} {'='*10}")
     
     # Structure the initial AgentState payload
     test_state = {
