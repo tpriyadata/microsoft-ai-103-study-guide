@@ -80,6 +80,16 @@ def should_continue(state: AgentState) -> str:
         return "execute_tools"
     return END
 
+# Your current edge definition:
+workflow.add_conditional_edges(
+    "agent_core",
+    should_continue,
+    {
+        "execute_tools": END,  # <--- Note this mapping
+        "end": END
+    }
+)
+
 # Initialize and compile the state graph
 workflow = StateGraph(AgentState)
 
