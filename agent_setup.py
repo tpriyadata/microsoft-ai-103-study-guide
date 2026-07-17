@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 from typing_extensions import TypedDict
 from langgraph.graph.message import add_messages
 from langgraph.graph import StateGraph, END
+import asyncio
 
 # Import your zero-cost mock environment modules
 from config_loader import initialize_azure_clients
@@ -136,7 +137,7 @@ if __name__ == "__main__":
         "verification_passed": False
     }
     
-    output = app.invoke(initial_state)
+    output = asyncio.run(app.invoke(initial_state))
     print("✓ LangGraph compiled and executed state transition successfully.")
     print(f"Final Action State: {output['current_action']}")
 
