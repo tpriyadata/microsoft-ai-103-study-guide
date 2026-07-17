@@ -44,7 +44,7 @@ This repository serves as a comprehensive, hands-on study guide for passing **Ex
 ### 1. No Affiliation with Microsoft
 This repository is an independent study project developed for educational and portfolio demonstration purposes. It is **not** affiliated with, endorsed by, sponsored by, or associated with Microsoft Corporation. "Microsoft", "Azure", and "AI-103" are trademarks of the Microsoft group of companies.
 
-### 2. Educational Use Only (No Exam Warranty)
+### 2. Educational Use Only 
 The code, architectural layouts, and simulation frameworks provided herein are intended strictly for conceptual study and local testing validation. While this repository aligns with the topics covered in the official [Study guide for Exam AI-103](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-103), completion or utilization of this code does not guarantee a passing score on any official certification assessment.
 
 ### 3. Limitation of Liability
