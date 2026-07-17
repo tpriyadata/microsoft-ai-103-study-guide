@@ -79,6 +79,37 @@ if __name__ == "__main__":
         "current_action": "init",
         "verification_passed": False
     }
+
+from config_loader import initialize_azure_clients
+from document_processor import IngestionPipeline
+from langgraph.graph import StateGraph, END
+
+# Initialize your zero-cost mock configuration environment
+settings, openai_client = initialize_azure_clients()
+pipeline = IngestionPipeline(index_name=settings.azure_ai_search_index_name)
+
+def call_model(state: AgentState):
+    """Simulates the core agent node pulling and processing context."""
+    print("\n[Node: agent_core] Processing state workflow...")
+    
+    # 1. Simulate document intelligence layout parsing
+    parsed_markdown = pipeline.simulate_document_intelligence_layout("report.pdf")
+    
+    # 2. Simulate chunking behavior
+    chunks = pipeline.chunk_document(parsed_markdown)
+    
+    # 3. Simulate calling your zero-cost mock OpenAI client with the context
+    response = openai_client.chat.completions.create(
+        model=settings.azure_openai_deployment_name,
+        messages=[{"role": "user", "content": f"Context: {chunks[0].content}"}]
+    )
+    print(f"🤖 LLM Structural Output: {response.choices[0].message.content}")
+
+    return {
+        "messages": state.get("messages", []),
+        "current_action": "evaluating_document",
+        "verification_passed": True
+    }
     output = app.invoke(initial_state)
     print("✓ LangGraph compiled and executed state transition successfully.")
     print(f"Final Action State: {output['current_action']}")    
