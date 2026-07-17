@@ -137,7 +137,7 @@ if __name__ == "__main__":
         "verification_passed": False
     }
     
-    output = asyncio.run(app.invoke(initial_state))
+    output = asyncio.run(app.ainvoke(initial_state))
     print("✓ LangGraph compiled and executed state transition successfully.")
     print(f"Final Action State: {output['current_action']}")
 
