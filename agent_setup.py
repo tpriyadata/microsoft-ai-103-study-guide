@@ -27,12 +27,59 @@ class HumanOversightApproval(BaseModel):
     """Schema for forcing an explicit human-in-the-loop sign-off state."""
     justification: str = Field(description="Reasoning provided by the agent for requiring approval.")
     estimated_token_impact: int = Field(description="Projected computational resource usage.")
+# ===================================================================== #
+# 3. DEFINE THE ROUTING & EXECUTION GRAPH (Domain 2: Orchestration)     #
+# ===================================================================== #
+from langgraph.graph import StateGraph, END
 
+def call_model(state: AgentState):
+    """Simulates Azure OpenAI deciding to execute a tool or proceed."""
+    return {
+        "messages": state.get("messages", []),
+        "current_action": "evaluating_document",
+        "verification_passed": False
+    }
+
+def should_continue(state: AgentState) -> str:
+    """Conditional routing logic for state transitions."""
+    if state.get("current_action") == "evaluating_document":
+        return "execute_tools"
+    return END
+
+# Initialize and compile the state graph
+workflow = StateGraph(AgentState)
+workflow.add_node("agent_core", call_model)
+workflow.set_entry_point("agent_core")
+
+workflow.add_conditional_edges(
+    "agent_core",
+    should_continue,
+    {
+        "execute_tools": END,  # Short-circuiting to END for this validation step
+        END: END
+    }
+)
+
+app = workflow.compile()
+
+# ===================================================================== #
+# 4. VALIDATION RUNNER                                                  #
+# ===================================================================== #
 if __name__ == "__main__":
-    # Self-test validation block to ensure schemas match Pydantic v2 specs
+    # 1. Validate Pydantic Schemas
     test_tool = DocumentExtractionTool(
         target_url="https://example.com/report.pdf", 
         extract_fields=["metrics", "cost_optimization"]
     )
-    print("Schema initialization verified successfully:")
-    print(test_tool.model_dump_json(indent=2))
+    print("✓ Pydantic V2 schemas initialized successfully.")
+    
+    # 2. Validate LangGraph Compilation
+    initial_state = {
+        "messages": [("user", "Analyze the latest cloud spend report.")],
+        "current_action": "init",
+        "verification_passed": False
+    }
+    output = app.invoke(initial_state)
+    print("✓ LangGraph compiled and executed state transition successfully.")
+    print(f"Final Action State: {output['current_action']}")    
+
