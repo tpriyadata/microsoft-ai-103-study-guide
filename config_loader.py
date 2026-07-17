@@ -20,20 +20,22 @@ class MockAzureOpenAI:
     """Simulates Azure OpenAI REST responses to bypass cloud token charges."""
     def __init__(self, **kwargs):
         print("💰 [Cost Optimization] Local Mock Client Initialized - Zero Azure Fees.")
+        self.chat = self.MockChat()
 
-    class Chat:
-        class Completions:
-            def create(self, *args, **kwargs):
-                class Choice:
-                    class Message:
-                        content = "This is a simulated response for schema and routing verification."
-                        tool_calls = None
-                    message = Message()
-                class MockResponse:
-                    choices = [Choice()]
-                return MockResponse()
-        completions = Completions()
-    chat = chat
+    class MockChat:
+        def __init__(self):
+            self.completions = self.MockCompletions()
+
+    class MockCompletions:
+        def create(self, *args, **kwargs):
+            class Choice:
+                class Message:
+                    content = "This is a simulated response for schema and routing verification."
+                    tool_calls = None
+                message = Message()
+            class MockResponse:
+                choices = [Choice()]
+            return MockResponse()
 
 def initialize_azure_clients():
     """Initializes client with an automatic fallback to zero-cost mocks."""
