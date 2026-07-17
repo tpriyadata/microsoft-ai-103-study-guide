@@ -1,9 +1,10 @@
 import os
+import asyncio
 from typing import Dict, List, Any
 from pydantic import BaseModel, Field
 
 # ===================================================================== #
-# DOMAIN 4: DOCUMENT INTELLIGENCE & INGESTION MECHANICS                 #
+# DOMAIN 4: DOCUMENT INTELLIGENCE & INGESTION MECHANICS (ASYNC)       #
 # ===================================================================== #
 
 class DocumentChunk(BaseModel):
@@ -14,22 +15,23 @@ class DocumentChunk(BaseModel):
 
 class IngestionPipeline:
     """
-    Simulates Azure AI Document Intelligence + Azure AI Search Ingestion.
-    Teaches you the structural workflow required for the AI-103 Exam.
+    Simulates an Asynchronous Azure AI Document Intelligence + Azure AI Search Ingestion.
+    Teaches you high-performance orchestration and high-recall chunking for the AI-103.
     """
     def __init__(self, index_name: str):
         self.index_name = index_name
-        print(f"📡 Ingestion Pipeline initialized for Index: {self.index_name}")
+        print(f"📡 Async Ingestion Pipeline initialized for Index: {self.index_name}")
 
-    def simulate_document_intelligence_layout(self, file_path: str) -> str:
+    async def simulate_document_intelligence_layout(self, file_path: str) -> str:
         """
-        Simulates parsing a complex document (like a PDF).
-        AI-103 Core Concept: 'Layout' feature preserves markdown tables, 
-        headers, and strict reading orders for RAG.
+        Simulates parsing a complex document asynchronously.
+        Using async prevents network and file I/O operations from stalling the engine.
         """
-        print(f"📖 Analyzing layout semantics of '{file_path}' via Mock Document Intelligence...")
+        print(f"📖 [Async] Starting layout semantics extraction for '{file_path}'...")
         
-        # Simulating parsed markdown data structure containing text and tables
+        # Simulate non-blocking network I/O latency (e.g., waiting on Azure endpoint response)
+        await asyncio.sleep(1.0) 
+        
         mock_markdown_output = (
             "# Q2 Cost Optimization Report\n\n"
             "## Vector Database Infrastructure Analysis\n"
@@ -41,38 +43,82 @@ class IngestionPipeline:
         )
         return mock_markdown_output
 
-    def chunk_document(self, text: str, max_chunk_size: int = 200) -> List[DocumentChunk]:
+    async def chunk_document(self, text: str, chunk_size: int = 300, chunk_overlap: int = 50) -> List[DocumentChunk]:
         """
-        Simulates programmatic content chunking.
-        AI-103 Core Concept: Correct chunk sizing directly controls 
-        LLM context window efficiency and grounding quality.
-        """
-        print(f"✂ Splitting text into fixed tokens (Max Size: {max_chunk_size} characters)...")
-        lines = text.split("\n\n")
-        chunks = []
+        Implements an asynchronous sliding window chunking mechanism.
         
-        for idx, line in enumerate(lines):
-            if line.strip():
+        AI-103 Strategy: Introducing a controlled overlap ensures semantic context 
+        is preserved at text boundaries, maximizing Vector Recall Accuracy during queries.
+        """
+        print(f"✂ [Async] Processing sliding window chunking (Size: {chunk_size}, Overlap: {chunk_overlap})...")
+        
+        # Yield control briefly to ensure the event loop stays unblocked
+        await asyncio.sleep(0.01)
+        
+        chunks = []
+        start_idx = 0
+        text_length = len(text)
+        chunk_count = 0
+
+        while start_idx < text_length:
+            end_idx = min(start_idx + chunk_size, text_length)
+            
+            # Smart word-boundary snapping to avoid cutting words in half
+            if end_idx < text_length:
+                next_space = text.find(" ", end_idx)
+                if next_space != -1 and (next_space - end_idx) < 15:
+                    end_idx = next_space
+
+            chunk_content = text[start_idx:end_idx].strip()
+            
+            if chunk_content:
                 chunks.append(DocumentChunk(
-                    chunk_id=f"doc-chunk-{idx}",
-                    content=line.strip(),
+                    chunk_id=f"doc-chunk-{chunk_count}",
+                    content=chunk_content,
                     page_number=1,
                     metadata={"source_file": "report.pdf"}
                 ))
+                chunk_count += 1
+            
+            # Slide window forward by chunk_size minus the overlap offset
+            start_idx += (chunk_size - chunk_overlap)
+            
+            if chunk_size <= chunk_overlap:
+                break
+                
         return chunks
 
-if __name__ == "__main__":
-    print("🚀 Running Ingestion Pipeline Validation Runner...")
-    
-    # Instantiate pipeline with zero external service costs
+async def bounded_process(file_path: str, semaphore: asyncio.Semaphore, pipeline: IngestionPipeline) -> List[DocumentChunk]:
+    """
+    Wraps worker execution inside a semaphore context manager.
+    Safely throttles concurrent requests to handle long waiting periods and protect API rate limits.
+    """
+    async with semaphore:
+        parsed_text = await pipeline.simulate_document_intelligence_layout(file_path)
+        chunks = await pipeline.chunk_document(parsed_text)
+        return chunks
+
+async def main():
+    print("🚀 Running Async Ingestion Pipeline Validation Runner...")
     pipeline = IngestionPipeline(index_name="clinical-evidence-index")
     
-    # 1. Parse Document Structure
-    parsed_text = pipeline.simulate_document_intelligence_layout("report.pdf")
+    # Restrict batch parsing to a maximum of 3 concurrent workers
+    concurrency_semaphore = asyncio.Semaphore(3)
     
-    # 2. Execute Chunking Routine
-    processed_chunks = pipeline.chunk_document(parsed_text)
+    # Simulate an incoming batch of multiple documents
+    document_batch = [f"financial_report_{i}.pdf" for i in range(1, 5)]
     
-    print(f"\n✓ Successfully verified local ingestion loop processing. Generated {len(processed_chunks)} logical chunks.")
-    for chunk in processed_chunks:
-        print(f"  └─ [{chunk.chunk_id}] Page {chunk.page_number}: '{chunk.content[:60]}...'")
+    print(f"🚦 Dispatching {len(document_batch)} files concurrently via asyncio.gather...")
+    
+    # Create concurrent execution tasks
+    tasks = [bounded_process(doc, concurrency_semaphore, pipeline) for doc in document_batch]
+    
+    # Run tasks concurrently, flattening individual network waiting latencies
+    batch_results = await asyncio.gather(*tasks)
+    
+    total_chunks = sum(len(res) for res in batch_results)
+    print(f"\n✓ Successfully verified local async ingestion loop. Processed {total_chunks} total chunks across the batch!")
+
+if __name__ == "__main__":
+    # Standard entry point to execute our asynchronous event loop
+    asyncio.run(main())
