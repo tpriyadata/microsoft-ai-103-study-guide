@@ -52,15 +52,15 @@ class DocumentExtractionTool(BaseModel):
     extract_fields: List[str] = Field(description="Specific terms or sections to parse out.")
 
 # 3. DEFINE THE ROUTING & EXECUTION GRAPH
-def call_model(state: AgentState):
+async def call_model(state: AgentState):
     """Simulates the core agent node pulling and processing context."""
     print("\n[Node: agent_core] Processing state workflow...")
     
     # 1. Simulate document intelligence layout parsing
-    parsed_markdown = pipeline.simulate_document_intelligence_layout("report.pdf")
+    parsed_markdown = await pipeline.simulate_document_intelligence_layout("report.pdf")
     
     # 2. Simulate chunking behavior
-    chunks = pipeline.chunk_document(parsed_markdown)
+    chunks = await pipeline.chunk_document(parsed_markdown)
     
     # 3. Simulate calling your zero-cost mock OpenAI client
     response = openai_client.chat.completions.create(
