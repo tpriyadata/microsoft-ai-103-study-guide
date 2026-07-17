@@ -10,3 +10,4 @@ beautifulsoup4
 
 # Observability & Tracing
 promptflow-tracing
+pydantic-settings
