@@ -17,7 +17,7 @@ def run_test_case(name: str, user_message: str):
     
     print(f"🏁 Final Action State: {output['current_action']}")
     print(f"🔒 Guardrail Verification Passed: {output['verification_passed']}")
-    print(f"{"="*40}\n")
+    print(f"{'='*40}\n")
     return output
 
 if __name__ == "__main__":
