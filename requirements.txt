@@ -1,0 +1,12 @@
+# Azure AI Services & Foundry Core
+azure-ai-projects>=1.0.0b1
+azure-ai-inference>=1.0.0b1
+azure-identity
+
+# Agent Orchestration & Data Validation
+langgraph
+pydantic>=2.0
+beautifulsoup4
+
+# Observability & Tracing
+promptflow-tracing
