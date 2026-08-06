@@ -1,6 +1,11 @@
 # microsoft-ai-103-study-guide
 # Microsoft AI-103 Study Guide: Azure AI Apps and Agents Developer(beta)
 
+![Exam AI-103](https://img.shields.io/badge/Exam-AI--103-blue?style=flat-square)
+![Questions](https://img.shields.io/badge/Practice_Questions-500%2B_Included-brightgreen?style=flat-square)
+![Stack](https://img.shields.io/badge/Stack-Python_%7C_LangGraph_%7C_Azure_AI-orange?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+
 This repository serves as a comprehensive, hands-on study guide for passing **Exam AI-103: Developing AI Apps and Agents on Azure**. It includes domain breakdowns, implementation code snippets in Python, and official resource tracking.
 
 ---
