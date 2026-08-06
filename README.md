@@ -30,14 +30,6 @@ This repository serves as a comprehensive, hands-on study guide for passing **Ex
   - [ ] Build Large Language Model-first text analysis and information extraction pipelines (RAG).
   - [ ] Set up observability using tracing, token analytics, and latency breakdowns.
 
----
-
-## 🛠 Prerequisites & Environment Checklist
-* Proficient in **Python**
-* Familiar with utilizing REST APIs and Azure SDKs
-* Core stack focus: LangGraph, Pydantic, Azure OpenAI, and promptflow tracing.
-
-* ---
 
 ## ⚖️ Disclaimer & Legal Notice
 
