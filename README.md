@@ -40,6 +40,25 @@ This repository serves as a comprehensive, hands-on study guide for passing **Ex
   - [ ] Set up observability using tracing, token analytics, and latency breakdowns.
 
 
+  # Microsoft AI-103 Study Guide
+
+## Azure AI Foundry Architecture
+
+![Azure AI Foundry](images/foundry/foundry-architecture.png)
+
+---
+
+## Azure AI Search Pipeline
+
+![Azure AI Search](images/ai-search/azure-ai-search-pipeline.png)
+
+---
+
+## RAG Architecture
+
+![RAG](images/rag/rag-overview.png)
+
+
 ## ⚖️ Disclaimer & Legal Notice
 
 ### 1. No Affiliation with Microsoft
