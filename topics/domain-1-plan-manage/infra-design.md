@@ -26,7 +26,10 @@ The exam tests whether you can read a scenario's team structure, compliance requ
 
 ## Related
 - Framework: ../../frameworks/infra-design-decision-framework.md
-- Practice: ../../mock-tests/infra-design-quiz.md
+- Practice (core): ../../mock-tests/infra-design-quiz.md
+- Practice (hard mode): ../../mock-tests/infra-design-quiz-hardmode.md
 
 ## Referenced by
 - mock-tests/infra-design-quiz.md
+- mock-tests/infra-design-quiz-hardmode.md
+- frameworks/infra-design-decision-framework.md
