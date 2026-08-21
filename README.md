@@ -5,8 +5,6 @@ Welcome to the open-source study repository for **Exam AI-103: Developing AI App
 ![Updated](https://img.shields.io/badge/Status-Updated_Daily-blue?style=flat-square&logo=github)
 ![Questions](https://img.shields.io/badge/Practice_Questions-500%2B-brightgreen?style=flat-square&logo=microsoft)
 ![Guide](https://img.shields.io/badge/AI--103-Complete_Guide-orange?style=flat-square)
-![Python](https://img.shields.io/badge/SDK-Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Azure CLI](https://img.shields.io/badge/CLI-Azure_CLI-0089D6?style=flat-square&logo=microsoftazure&logoColor=white)
 ![Agentic AI](https://img.shields.io/badge/Focus-Agentic_AI-purple?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
