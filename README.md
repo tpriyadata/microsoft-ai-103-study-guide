@@ -71,6 +71,6 @@ This software is provided "as-is" under the MIT License. In no event shall the a
 
 ## 📚 Key Study Resources
 * [Official AI-103 Certification Page](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/)
-* [Official AI-103 practice-assessments Page]((https://learn.microsoft.com/en-us/credentials/certifications/practice-assessments-for-microsoft-certifications)/).
+* [Official AI-103]((https://learn.microsoft.com/en-us/credentials/certifications/practice-assessments-for-microsoft-certifications)/).
 
 * [Official Microsoft Exam Sandbox](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/#exam-prepare-options)
