@@ -44,15 +44,17 @@ This repository serves as a comprehensive, hands-on study guide for passing **Ex
 
 ## Azure AI Foundry Architecture
 
-![Azure AI Foundry](images/foundry/foundry-architecture.png)
+[![Azure AI Foundry](images/foundry/foundry-architecture.png)](https://azure.microsoft.com/en-us/products/ai-foundry)
+
 
 ## Azure AI Search Pipeline
 
-![Azure AI Search](images/ai-search/azure-ai-search-pipeline.png)
+[![Azure AI Search](images/ai-search/azure-ai-search-pipeline.png)](https://azure.microsoft.com/en-us/products/ai-services/ai-search)
+
 
 ## RAG Architecture
 
-![RAG](images/rag/rag-overview.png)
+[![RAG](images/rag/rag-overview.png)](https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation)
 
 
 ## ⚖️ Disclaimer & Legal Notice
