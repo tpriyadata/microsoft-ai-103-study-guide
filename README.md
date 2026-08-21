@@ -63,7 +63,7 @@ This repository serves as a comprehensive, hands-on study guide for passing **Ex
 This repository is an independent study project developed for educational and portfolio demonstration purposes. It is **not** affiliated with, endorsed by, sponsored by, or associated with Microsoft Corporation. "Microsoft", "Azure", and "AI-103" are trademarks of the Microsoft group of companies.
 
 ### 2. Educational Use Only 
-The code, architectural layouts, and simulation frameworks provided herein are intended strictly for conceptual study and local testing validation. While this repository aligns with the topics covered in the official [Study guide for Exam AI-103](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-103), completion or utilization of this code does not guarantee a passing score on any official certification assessment.
+ The repository aligns with the topics covered in the official [Study guide for Exam AI-103](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-103), completion or utilization of this code does not guarantee a passing score on any official certification assessment.
 
 ### 3. Limitation of Liability
 This software is provided "as-is" under the MIT License. In no event shall the authors or copyright holders be liable for any claims, damages, or liabilities arising from the use of this simulation architecture, including but not limited to local execution errors, downstream cloud configuration issues, or modifications made by third parties.
@@ -71,4 +71,6 @@ This software is provided "as-is" under the MIT License. In no event shall the a
 
 ## 📚 Key Study Resources
 * [Official AI-103 Certification Page](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/)
+* [Official AI-103 practice-assessments Page]((https://learn.microsoft.com/en-us/credentials/certifications/practice-assessments-for-microsoft-certifications/)
+
 * [Official Microsoft Exam Sandbox](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/#exam-prepare-options)
