@@ -86,6 +86,48 @@ New-TopicStub "$D4/llm-rag-pipelines.md" "LLM-first text analysis and RAG pipeli
 New-TopicStub "$D4/observability-tracing.md" "Observability: tracing, token analytics, latency" `
     "Set up observability using tracing, token analytics, and latency breakdowns."
 
+    # ---------- Domain 5: Implement Information Extraction Solutions (10-15%) ----------
+$D5 = "topics/domain-5-information-extraction"
+
+New-TopicStub "$D5/retrieval-grounding.md" "Build retrieval and grounding pipelines" `
+    "Build retrieval and grounding pipelines by ingesting, indexing, searching, enriching, and retrieving content for AI applications and agents."
+
+New-TopicStub "$D5/ingest-index-content.md" "Ingest and index content" `
+    "Ingest and index content for retrieval using appropriate data sources, indexes, chunking, metadata, and indexing strategies."
+
+New-TopicStub "$D5/vector-hybrid-semantic-search.md" "Vector, hybrid, and semantic search" `
+    "Implement vector search, hybrid search, and semantic search to retrieve relevant information from indexed content."
+
+New-TopicStub "$D5/search-enrichment-skills.md" "Enrich content using search skills" `
+    "Enrich indexed content using built-in and custom skills to improve retrieval and grounding."
+
+New-TopicStub "$D5/rag-ingestion.md" "RAG ingestion pipelines" `
+    "Build retrieval-augmented generation ingestion pipelines that prepare and ground enterprise content for generative AI applications."
+
+New-TopicStub "$D5/ocr.md" "OCR for information extraction" `
+    "Use optical character recognition to extract text from scanned documents and images as part of information extraction pipelines."
+
+New-TopicStub "$D5/agent-retrieval-integration.md" "Connect retrieval to agents and workflows" `
+    "Connect retrieval and grounding pipelines to AI workflows, agents, and agent tools."
+
+New-TopicStub "$D5/document-extraction.md" "Extract content from documents" `
+    "Extract text, layout, tables, fields, and other structured information from documents."
+
+New-TopicStub "$D5/document-intelligence.md" "Azure AI Document Intelligence" `
+    "Use Azure AI Document Intelligence to analyze documents and extract text, layout, tables, fields, and structured information."
+
+New-TopicStub "$D5/content-understanding.md" "Azure AI Content Understanding" `
+    "Use Azure AI Content Understanding to create clean, grounded representations of documents and other content."
+
+New-TopicStub "$D5/content-understanding-analyzers.md" "Content Understanding analyzers" `
+    "Create and use Content Understanding analyzers to analyze content and extract meaningful information."
+
+New-TopicStub "$D5/structured-output.md" "Structured output extraction" `
+    "Extract information into structured outputs using schemas and validated fields."
+
+New-TopicStub "$D5/markdown-output.md" "Markdown document output" `
+    "Generate Markdown representations of extracted document content for downstream AI and retrieval workflows."
+
 New-Item -ItemType Directory -Path "frameworks" -Force | Out-Null
 New-Item -ItemType Directory -Path "mock-tests" -Force | Out-Null
 
