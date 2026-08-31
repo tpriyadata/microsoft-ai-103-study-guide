@@ -1,6 +1,6 @@
 # Microsoft AI-103 Study Guide: Azure AI Apps and Agents Developer(beta)
 
-Welcome to the open-source study repository for **Exam AI-103: Developing AI Apps and Agents on Azure**. This guide features **500+ scenario-based practice questions**, domain breakdowns, Python SDK implementations, and hands-on agentic workflows.
+Welcome to the open-source study repository for **Exam AI-103: Developing AI Apps and Agents on Azure**. This guide features **scenario-based practice questions**, domain breakdowns, Python SDK implementations, and hands-on agentic workflows.
 
 This repository serves as a comprehensive, hands-on study guide for passing **Exam AI-103: Developing AI Apps and Agents on Azure**. It includes domain breakdowns, implementation code snippets in Python, and official resource tracking.
 
