@@ -1,0 +1,199 @@
+> **Responsible AI is not just about blocking harmful content. You need to evaluate the entire AI/agent behavior against test cases before release.**
+
+### What the question is really testing
+
+Suppose you have an **AI agent** that can:
+
+1. Understand a user request
+2. Search a knowledge base
+3. Call tools/APIs
+4. Generate an answer
+
+You need to verify that the agent behaves correctly.
+
+For example:
+
+**User:** "What is the patient's latest diagnosis?"
+
+Expected behavior:
+
+```text
+Agent
+ ↓
+Search medical records
+ ↓
+Retrieve correct evidence
+ ↓
+Use expected tool
+ ↓
+Generate grounded answer
+ ↓
+Safety check
+ ↓
+Return response
+```
+
+The evaluation should test **all of these**, not just whether the final text sounds good.
+
+---
+
+## The important distinction
+
+| Approach                             | What it checks                                             | Good enough for agent evaluation? |
+| ------------------------------------ | ---------------------------------------------------------- | --------------------------------- |
+| **Text similarity**                  | Is output similar to expected answer?                      | ❌                                 |
+| **Fluency**                          | Does response sound natural?                               | ❌                                 |
+| **Azure AI Content Safety**          | Harmful/unsafe content                                     | ❌ Alone                           |
+| **Application Insights**             | Runtime telemetry/monitoring                               | ❌ Not release evaluation          |
+| **Portal evaluation**                | Manual evaluation through portal                           | ❌ If automation is required       |
+| **Microsoft Foundry SDK evaluation** | Automated test cases + agent behavior + grounding + safety | ✅                                 |
+
+### Why Foundry SDK is the answer
+
+The screenshot says:
+
+> "A Microsoft Foundry SDK cloud evaluation run against the agent is correct..."
+
+Because you can put evaluation into a **CI/CD pipeline**.
+
+Think of it like software unit testing:
+
+```text
+Developer changes agent
+        ↓
+CI/CD pipeline
+        ↓
+Run evaluation test set
+        ↓
+Evaluate agent
+   ├── Tool calls
+   ├── Grounding
+   ├── Relevance
+   ├── Safety
+   └── Expected behavior
+        ↓
+Pass → Deploy
+Fail → Block deployment
+```
+
+This is a very important **production AI engineering pattern**.
+
+---
+
+# The exam concept to remember
+
+### Traditional software
+
+```text
+Code
+ ↓
+Unit tests
+ ↓
+Integration tests
+ ↓
+Deploy
+```
+
+### GenAI / Agentic AI
+
+```text
+Prompt + Agent + Tools + RAG
+             ↓
+      Evaluation dataset
+             ↓
+ ┌───────────┼────────────┐
+ ↓           ↓            ↓
+Safety    Grounding   Tool behavior
+ ↓           ↓            ↓
+ └───────────┼────────────┘
+             ↓
+       Evaluation score
+             ↓
+      Pass / Fail gate
+             ↓
+          Deploy
+```
+
+That is **Responsible AI instrumentation**.
+
+---
+
+## One particularly important point
+
+**Content Safety ≠ Responsible AI evaluation**
+
+For example, Content Safety might detect:
+
+> "This response contains harmful content."
+
+But it doesn't necessarily answer:
+
+> "Did the agent call the correct tool?"
+
+or:
+
+> "Did the answer come from the approved source?"
+
+or:
+
+> "Did the agent follow the expected workflow?"
+
+or:
+
+> "Did the RAG response actually have supporting evidence?"
+
+Those are **agent evaluation** questions.
+
+---
+
+## How this connects to what you've been building
+
+Your own **AlzDetect / TraxNeuro agent work** is actually a very good practical example.
+
+You could evaluate:
+
+```text
+Test Case
+   ↓
+Expected evidence
+   ↓
+Agent
+   ↓
+Retriever
+   ↓
+Tool calls
+   ↓
+Generated answer
+   ↓
+Evaluators
+```
+
+For example:
+
+**Evaluation #1 — Grounding**
+
+> Does the Alzheimer's biomarker conclusion actually come from the retrieved evidence?
+
+**Evaluation #2 — Tool behavior**
+
+> Did the agent call the appropriate biomarker-analysis tool?
+
+**Evaluation #3 — Safety**
+
+> Does the system avoid making an unsupported clinical diagnosis?
+
+**Evaluation #4 — Relevance**
+
+> Does the answer address the actual research question?
+
+**Evaluation #5 — Faithfulness**
+
+> Is the generated answer supported by the retrieved evidence?
+
+This is exactly the mindset behind the screenshot.
+
+### 🎯 For AI-103, remember this sentence:
+
+**Agentic Responsible AI = evaluate the agent's behavior, grounding, and safety automatically against a test dataset, preferably as part of CI/CD.**
+
+That is much more important than simply memorizing the names of the evaluators.
